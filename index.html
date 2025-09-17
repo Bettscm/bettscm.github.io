@@ -129,13 +129,24 @@
     .pill{display:inline-block; padding:6px 10px; border-radius:100px; font-size:12px; background:rgba(79,140,255,.14); color:#cfe0ff; border:1px solid rgba(79,140,255,.35)}
 
     footer{margin-top:28px; color:var(--muted); font-size:13px}
+     
+    .profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+  }
+    
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="brand">
-        <div class="logo" aria-hidden="true">Y</div>
+        <div class="logo" aria-hidden="true">
+          <img src="images/profile.jpg" alt="Carter Mitchell Betts profile photo" class="profile-pic" />
+        </div>        
         <div class="name">
           <h1>Carter Mitchell Betts</h1>
           <p>Mechanical Engineering & Computer Science • Robotics • Test Engineering</p>
