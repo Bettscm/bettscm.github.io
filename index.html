@@ -1,10 +1,257 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>My Website</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Portfolio website for Your Name: projects, resume, research, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0d10;           /* background */
+      --card:#11151b;         /* card background */
+      --muted:#9aa4b2;        /* muted text */
+      --text:#e6edf3;         /* main text */
+      --brand:#4f8cff;        /* accent */
+      --brand-2:#69db7c;      /* secondary accent */
+      --ring: rgba(79,140,255,.45);
+      --radius:18px;
+      --shadow: 0 8px 24px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.02);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif; color:var(--text);
+      background: radial-gradient(1200px 800px at 100% -10%, rgba(79,140,255,.12), transparent 60%),
+                  radial-gradient(1000px 700px at -10% 100%, rgba(105,219,124,.10), transparent 60%),
+                  var(--bg);
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Shell */
+    .wrap{max-width:1100px; margin-inline:auto; padding:32px 20px 60px}
+    header{display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; margin-bottom:22px}
+    .brand{display:flex; gap:14px; align-items:center}
+    .logo{width:48px; height:48px; border-radius:14px; display:grid; place-items:center; background:linear-gradient(135deg,var(--brand),#7aa5ff); color:white; font-weight:800; box-shadow:var(--shadow)}
+    .name{line-height:1}
+    .name h1{font-size:22px; margin:0 0 4px}
+    .name p{margin:0; color:var(--muted); font-size:14px}
+
+    .actions{display:flex; gap:10px; align-items:center}
+    .btn{appearance:none; border:1px solid rgba(255,255,255,.08); background:var(--card); color:var(--text);
+         padding:10px 14px; border-radius:12px; box-shadow:var(--shadow); font-weight:600; cursor:pointer}
+    .btn:hover{border-color:rgba(255,255,255,.18)}
+    .btn.primary{background:linear-gradient(180deg, rgba(79,140,255,.95), rgba(79,140,255,.85)); border-color:transparent}
+    .btn.primary:hover{filter:brightness(1.05)}
+
+    /* Tabs */
+    .tabs{
+      display:flex; gap:10px; padding:10px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08);
+      border-radius:14px; box-shadow:var(--shadow); overflow:auto
+    }
+    .tab{padding:10px 14px; border-radius:10px; border:1px solid transparent; background:transparent; color:var(--text);
+         font-weight:600; cursor:pointer; white-space:nowrap}
+    .tab[aria-selected="true"]{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+         border-color:rgba(255,255,255,.14); box-shadow:0 0 0 4px var(--ring)}
+    .panels{margin-top:16px}
+    .panel{display:none; background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius);
+           padding:22px; box-shadow:var(--shadow)}
+    .panel.active{display:block}
+
+    /* Content pieces */
+    .grid{display:grid; gap:16px}
+    @media (min-width: 840px){ .grid.cols-3{grid-template-columns:repeat(3, 1fr)} }
+    @media (min-width: 680px){ .grid.cols-2{grid-template-columns:repeat(2, 1fr)} }
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+          border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:16px; box-shadow:var(--shadow)}
+    .card h3{margin:6px 0 8px}
+    .meta{color:var(--muted); font-size:13px}
+
+    ul.clean{list-style:none; padding-left:0; margin:0}
+    ul.clean li{padding:8px 0; border-bottom:1px dashed rgba(255,255,255,.08)}
+    ul.clean li:last-child{border-bottom:0}
+
+    .pill{display:inline-block; padding:6px 10px; border-radius:100px; font-size:12px; background:rgba(79,140,255,.14); color:#cfe0ff; border:1px solid rgba(79,140,255,.35)}
+
+    footer{margin-top:28px; color:var(--muted); font-size:13px}
+  </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <p>Welcome to my first personal website on GitHub Pages.</p>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">Y</div>
+        <div class="name">
+          <h1>Your Name</h1>
+          <p>Mechanical Engineering & Computer Science • Robotics • Controls</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn" href="mailto:you@example.com">Email</a>
+        <a class="btn" href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">Download Résumé</a>
+      </div>
+    </header>
+
+    <!-- Accessible Tabs -->
+    <div class="tabs" role="tablist" aria-label="Primary">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="about" id="tab-about">About</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="projects" id="tab-projects">Projects</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="research" id="tab-research">Research</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="resume" id="tab-resume">Résumé</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="contact" id="tab-contact">Contact</button>
+    </div>
+
+    <div class="panels">
+      <!-- About -->
+      <section class="panel active" role="tabpanel" id="about" aria-labelledby="tab-about" tabindex="0">
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Hi, I’m Your Name 👋</h3>
+            <p>
+              I’m a junior‑level Mechanical Engineering + CS student focused on <strong>robotics, controls, and test engineering</strong>.
+              I build things that sense, decide, and move.
+            </p>
+            <p>
+              Recently: building a voice assistant, designing an inductive sensor, and shipping real‑world improvements at my internship.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Highlights</h3>
+            <ul class="clean">
+              <li>Stepper‑motor imaging rig for 3D reconstruction <span class="pill">Python • OpenCV • Photogrammetry</span></li>
+              <li>Inductive LC ring‑down metal detector <span class="pill">Analog • Signal Processing</span></li>
+              <li>EMS payroll system rewrite <span class="pill">Java • SQLite • GUI</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="panel" role="tabpanel" id="projects" aria-labelledby="tab-projects" tabindex="0">
+        <div class="grid cols-3">
+          <article class="card">
+            <h3>Inductive Sensor</h3>
+            <p class="meta">Python • Arduino • LC Oscillator</p>
+            <p>Custom board + firmware to detect a steel ball using ring‑down analysis; wrote calibration & visualization tools.</p>
+            <p><a href="#" target="_blank" rel="noopener">Code</a> · <a href="#" target="_blank" rel="noopener">Write‑up</a></p>
+          </article>
+          <article class="card">
+            <h3>Stepper Imaging Rig</h3>
+            <p class="meta">OpenCV • Stepper Control • 3D</p>
+            <p>Automated multi‑angle capture and 3D reconstruction pipeline for surgical research imaging.</p>
+            <p><a href="#" target="_blank" rel="noopener">Paper</a> · <a href="#" target="_blank" rel="noopener">Repo</a></p>
+          </article>
+          <article class="card">
+            <h3>Minerva Voice Assistant</h3>
+            <p class="meta">Python • Porcupine • Whisper</p>
+            <p>Desktop assistant with memory, hot‑word wake, and task automations; modular skill system.</p>
+            <p><a href="#" target="_blank" rel="noopener">Repo</a></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Research -->
+      <section class="panel" role="tabpanel" id="research" aria-labelledby="tab-research" tabindex="0">
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Syndactyly Imaging Optimization</h3>
+            <p class="meta">Advisor: Prof. X — 2024–2025</p>
+            <p>Designed imaging hardware and software to capture synchronized views and reconstruct a 3D model of a hand, enabling improved surgical planning.</p>
+          </div>
+          <div class="card">
+            <h3>Robotics & Controls Coursework</h3>
+            <ul class="clean">
+              <li>Feedback Control • System ID • MATLAB/Simulink</li>
+              <li>Embedded C • RTOS basics • Sensor fusion</li>
+              <li>Kinematics • Path planning • Mechatronics</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resume -->
+      <section class="panel" role="tabpanel" id="resume" aria-labelledby="tab-resume" tabindex="0">
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Résumé</h3>
+            <p>For a printable PDF, use the button in the header or <a href="resume.pdf" target="_blank" rel="noopener">open it here</a>.</p>
+            <ul class="clean">
+              <li><strong>Intern — Company</strong> · Test engineering, data acquisition, DOE</li>
+              <li><strong>Research — University Lab</strong> · Photogrammetry, automation</li>
+              <li><strong>Skills</strong> · Python, C/C++, Java, MATLAB; SolidWorks; Nginx/Linux</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Selected Achievements</h3>
+            <ul class="clean">
+              <li>Deployed tool that cut analysis time by 60%</li>
+              <li>Designed and validated lab instrument (viscometer) concept</li>
+              <li>TA/tutor: circuits & programming fundamentals</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="panel" role="tabpanel" id="contact" aria-labelledby="tab-contact" tabindex="0">
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Get in touch</h3>
+            <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">linkedin.com/in/your‑handle</a></p>
+            <p>GitHub: <a href="https://github.com/yourusername" target="_blank" rel="noopener">github.com/yourusername</a></p>
+          </div>
+          <div class="card">
+            <h3>Quick Pitch</h3>
+            <p>
+              I love hard problems at the intersection of hardware and software. If you’re hiring for robotics, controls,
+              or test engineering, I’d love to chat.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>© <span id="year"></span> Your Name • Built with plain HTML/CSS/JS • Hosted on GitHub Pages</p>
+    </footer>
+  </div>
+
+  <script>
+    // Accessible Tabs with hash routing & keyboard support
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+    function activate(id, pushHash = true){
+      tabs.forEach(t=>{
+        const sel = t.getAttribute('aria-controls')===id;
+        t.setAttribute('aria-selected', sel);
+        if(sel) t.focus({preventScroll:true});
+      });
+      panels.forEach(p=>p.classList.toggle('active', p.id===id));
+      if(pushHash) history.replaceState(null, '', `#${id}`);
+    }
+    tabs.forEach((t,i)=>{
+      t.addEventListener('click', ()=>activate(t.getAttribute('aria-controls')));
+      t.addEventListener('keydown', e=>{
+        const idx = tabs.indexOf(document.activeElement);
+        if(['ArrowRight','ArrowLeft','Home','End'].includes(e.key)) e.preventDefault();
+        if(e.key==='ArrowRight') tabs[(idx+1)%tabs.length].focus();
+        if(e.key==='ArrowLeft') tabs[(idx-1+tabs.length)%tabs.length].focus();
+        if(e.key==='Home') tabs[0].focus();
+        if(e.key==='End') tabs[tabs.length-1].focus();
+        if(e.key==='Enter' || e.key===' ') activate(document.activeElement.getAttribute('aria-controls'));
+      });
+    });
+    // Load from hash
+    const initial = location.hash?.replace('#','');
+    if(initial && panels.some(p=>p.id===initial)) activate(initial, false);
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
