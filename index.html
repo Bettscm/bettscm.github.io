@@ -9,6 +9,57 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+
+      /* --- Additions for scrollable, vertical projects panel --- */
+  #projects.panel {
+    max-height: 65vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .project-card {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .project-img {
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #222;
+    flex-shrink: 0;
+  }
+  .project-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  @media (max-width: 600px) {
+    .project-card {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .project-img {
+      width: 100%;
+      height: 160px;
+    }
+  }
+    
     :root{
       --bg:#0b0d10;           /* background */
       --card:#11151b;         /* card background */
@@ -132,28 +183,46 @@
       </section>
 
       <!-- Projects -->
-      <section class="panel" role="tabpanel" id="projects" aria-labelledby="tab-projects" tabindex="0">
-        <div class="grid cols-3">
-          <article class="card">
-            <h3>Inductive Sensor</h3>
-            <p class="meta">Python • Arduino • LC Oscillator</p>
-            <p>Custom board + firmware to detect a steel ball using ring‑down analysis; wrote calibration & visualization tools.</p>
-            <p><a href="#" target="_blank" rel="noopener">Code</a> · <a href="#" target="_blank" rel="noopener">Write‑up</a></p>
-          </article>
-          <article class="card">
-            <h3>Stepper Imaging Rig</h3>
-            <p class="meta">OpenCV • Stepper Control • 3D</p>
-            <p>Automated multi‑angle capture and 3D reconstruction pipeline for surgical research imaging.</p>
-            <p><a href="#" target="_blank" rel="noopener">Paper</a> · <a href="#" target="_blank" rel="noopener">Repo</a></p>
-          </article>
-          <article class="card">
-            <h3>Minerva Voice Assistant</h3>
-            <p class="meta">Python • Porcupine • Whisper</p>
-            <p>Artifical intelligence desktop assistant with memory, hot‑word wake, and task automations; modular skill system.</p>
-            <p><a href="#" target="_blank" rel="noopener">Repo</a></p>
-          </article>
-        </div>
-      </section>
+<section class="panel" role="tabpanel" id="projects" aria-labelledby="tab-projects" tabindex="0">
+  <div class="project-list">
+    <div class="project-card">
+      <img src="images/inductive-sensor.jpg" alt="Inductive Sensor project photo" class="project-img" />
+      <div class="project-info">
+        <h3>Inductive Sensor</h3>
+        <p class="meta">Python • Arduino • LC Oscillator</p>
+        <p>Custom board + firmware to detect a steel ball using ring‑down analysis; wrote calibration & visualization tools.</p>
+        <p>
+          <a href="#" target="_blank" rel="noopener">Code</a> ·
+          <a href="#" target="_blank" rel="noopener">Write‑up</a>
+        </p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="images/imaging-rig.jpg" alt="Stepper Imaging Rig photo" class="project-img" />
+      <div class="project-info">
+        <h3>Stepper Imaging Rig</h3>
+        <p class="meta">OpenCV • Stepper Control • 3D</p>
+        <p>Automated multi‑angle capture and 3D reconstruction pipeline for surgical research imaging.</p>
+        <p>
+          <a href="#" target="_blank" rel="noopener">Paper</a> ·
+          <a href="#" target="_blank" rel="noopener">Repo</a>
+        </p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="images/minerva.jpg" alt="Minerva Voice Assistant photo" class="project-img" />
+      <div class="project-info">
+        <h3>Minerva Voice Assistant</h3>
+        <p class="meta">Python • Porcupine • Whisper</p>
+        <p>Artificial intelligence desktop assistant with memory, hot‑word wake, and task automations; modular skill system.</p>
+        <p>
+          <a href="#" target="_blank" rel="noopener">Repo</a>
+        </p>
+      </div>
+    </div>
+    <!-- Add more project-card blocks as needed -->
+  </div>
+</section>
 
       <!-- Research -->
       <section class="panel" role="tabpanel" id="research" aria-labelledby="tab-research" tabindex="0">
