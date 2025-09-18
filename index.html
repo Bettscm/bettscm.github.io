@@ -36,21 +36,17 @@
     margin-bottom: 8px;
   }
   .project-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,.08);
-    cursor: pointer;
-    object-fit: contain;   /* shows the whole image */
-  }
-  .project-img {
-    width: 360px;
-    height: 240px;
-    object-fit: cover;
-    border-radius: 10px;
-    background: #222;
-    flex-shrink: 0;
-  }
+  max-width: 360px;   /* never wider than 360px */
+  max-height: 240px;  /* never taller than 240px */
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.08);
+  cursor: pointer;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
   .project-info {
     flex: 1;
     display: flex;
