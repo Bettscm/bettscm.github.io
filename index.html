@@ -154,7 +154,7 @@
         </div>        
         <div class="name">
           <h1>Carter Mitchell Betts</h1>
-          <p>Mechanical Engineering & Computer Science • Robotics • Test Engineering</p>
+          <p>Mechanical Engineering &amp; Computer Science • Robotics • Hardware and Software Integration</p>
         </div>
       </div>
       <div class="actions">
@@ -178,20 +178,35 @@
       <section class="panel active" role="tabpanel" id="about" aria-labelledby="tab-about" tabindex="0">
         <div class="grid cols-2">
           <div class="card">
-            <h3>Hi, I’m Carter Betts</h3>
+            <h3>Hi, I&rsquo;m Carter Betts</h3>
             <p>
-              I’m a junior‑level Mechanical Engineering + CS student focused on <strong>robotics, research and design, and test engineering</strong>.
+              I&rsquo;m a senior Mechanical Engineering student with a Computer Science minor and a robotics
+              concentration at Ohio Northern University, graduating in May 2027. Most of what I work on lives in
+              the space between hardware and software &mdash; designing and building a physical system, then
+              writing the code that makes it useful. In practice that has meant imaging rigs, custom
+              instrumentation, machine learning models, and simulation tools, often on the same project.
             </p>
             <p>
-              Recently: building an AI powered voice assistant, designed, programmed, and assembled a custom viscometer, and rebuilding local emergency medical services payroll software from ground up.
+              Right now I&rsquo;m an <strong>Evans Research Fellow</strong> working on a surgical planning system
+              for syndactyly, a condition in which a child&rsquo;s fingers are joined by skin and soft tissue. The
+              project takes a patient&rsquo;s hand from a set of ordinary photographs to a full three-dimensional
+              model, identifies the anatomy that matters, and simulates how a proposed operation will behave.
+              Starting this fall I&rsquo;m also an <strong>Ohio Space Grant Consortium STEM Scholar</strong>,
+              designing compact exercise equipment for astronauts on long-duration missions where there is very
+              little room to spare.
             </p>
           </div>
           <div class="card">
             <h3>Highlights</h3>
             <ul class="clean">
-              <li>Stepper‑motor imaging rig for 3D reconstruction <span class="pill">Python • Embedded Programming • Photogrammetry</span></li>
-              <li>Automating finite element analysis for surgical optimization <span class="pill">Ansys Parametric Design Language • OpenCV</span></li>
-              <li>Emergency Medical Services payroll system rewrite <span class="pill">Java • SQLite • GUI</span></li>
+              <li>Machine learning that identifies anatomy in three-dimensional scans automatically
+                <span class="pill">PyTorch • Deep Learning • Point Clouds</span></li>
+              <li>Simulation tools for patient-specific surgical modeling
+                <span class="pill">ANSYS • pyMAPDL • Python</span></li>
+              <li>Camera and motion hardware for low-cost 3D reconstruction
+                <span class="pill">Python • Embedded Systems • Photogrammetry</span></li>
+              <li>Custom instrumentation built end to end, from circuit to firmware
+                <span class="pill">Embedded Circuits • CAD • Sensing</span></li>
             </ul>
           </div>
         </div>
@@ -200,56 +215,97 @@
       <!-- Projects -->
 <section class="panel" role="tabpanel" id="projects" aria-labelledby="tab-projects" tabindex="0">
   <div class="project-list">
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Automatic Anatomical Identification in 3D Scans</h3>
+        <p class="meta">Machine Learning • PyTorch • Python</p>
+        <p>- Trained a deep learning model to automatically locate the web space between fingers in
+          three-dimensional hand scans, reaching a mean intersection-over-union of 0.774 under five-fold
+          cross-validation &mdash; that is, the model&rsquo;s prediction overlaps hand-labeled ground truth by
+          roughly 77 percent on scans it was never trained on, measured across five independent splits of the
+          data.</p>
+        <p>- Built the entire supporting toolchain from scratch, including a point cloud labeling application,
+          the annotated training dataset, and the cross-validation setup used to measure how well the model
+          performs on hands it has never seen before.</p>
+        <p>- The model is now accurate enough to feed the simulation stage directly, removing a manual
+          labeling bottleneck that previously required marking every scan by hand before analysis could
+          begin.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="FEA_Flap.png" width="900" height="700" loading="lazy" decoding="async" alt="Simulation result showing stress distribution across a surgical flap geometry, with concentrations at the two flap tips" class="project-img" />
+      <div class="project-info">
+        <h3>Automated Simulation for Surgical Planning</h3>
+        <p class="meta">ANSYS • pyMAPDL • Python</p>
+        <p>- Wrote a simulation pipeline that runs finite element analysis on surgical flap geometry
+          automatically, so a new patient&rsquo;s anatomy can be evaluated without rebuilding the model by hand
+          each time.</p>
+        <p>- Drove the model directly from scanned patient geometry rather than an idealized shape, so the
+          simulation reflects the specific hand being operated on instead of a generic approximation.</p>
+        <p>- Confirmed through a convergence study that the results are independent of how finely the model is
+          divided, so the output reflects the underlying physics rather than an artifact of the setup.</p>
+      </div>
+    </div>
+
     <div class="project-card">
       <img src="ResearchHardware.png" width="322" height="188" loading="lazy" decoding="async" alt="Annotated CAD render of the 3D scanner rig: frame, NEMA 23 stepper motor driving double helical gears, central shaft, palm support, and support arms holding the cameras" class="project-img" />
       <div class="project-info">
         <h3>Cost Effective 3D Scanner</h3>
-        <p class="meta">Embedded Programming • Microcontrollers • Python</p>
-        <p>- Led programming team responsible for the wiring and coding of prototype 3D scanner.</p>
-        <p>- Control stepper motor to complete one full rotation while cameras synchronously capture images.</p>
-        <p>- Photogrammetrically construct full 3D model of object using captured photos.</p>
+        <p class="meta">Embedded Systems • Microcontrollers • Python</p>
+        <p>- Led the programming team responsible for the wiring and control software of a prototype
+          three-dimensional scanner assembled from off-the-shelf cameras and a stepper motor.</p>
+        <p>- Wrote the embedded control code that rotates the subject through a full revolution while several
+          cameras capture synchronized images at each position.</p>
+        <p>- Reconstructed a complete three-dimensional model from the resulting photographs, reaching scan
+          quality comparable to commercial systems costing many times more.</p>
       </div>
     </div>
-     <div class="project-card">
-      <img src="FEA_Flap.png" width="900" height="700" loading="lazy" decoding="async" alt="pyMAPDL nodal equivalent stress contour on a syndactyly flap geometry, showing stress concentrations at the two flap tips" class="project-img" />
-      <div class="project-info">
-        <h3>Automated Finite Element Analysis (FEA) </h3>
-        <p class="meta">Ansys Parametric Design Language • Python • OpenCV</p>
-        <p>- Writing automated FEA program to ensure calculation accuracy across many variable inputs.</p>
-        <p>- Implemented knuckle detection software with Python OpenCV to extract critical key points.</p>
-        <p>- Developing automated area of interest extractor, and mesh unfolder to simplify calculations.</p>
-      </div>
-    </div>
-     <div class="project-card">
-      <img src="EMS_Payroll.png" width="780" height="484" loading="lazy" decoding="async" alt="EMS Payroll application: Java Swing form for adding a run, with fields for run number, description, start and end time, date, and four employee dropdowns" class="project-img" />
-      <div class="project-info">
-        <h3>Emergency Medical Services (EMS) Payroll Rebuild</h3>
-        <p class="meta">Java • UI/UX Design • SQLite</p>
-        <p>- Redesigning outdated local EMS department payroll from ground up using Java Swing.</p>
-        <p>- Collaborating with EMS leadership to design ideal user interface for specific use case.</p>
-        <p>- Implementing SQLite database to store department information while allowing ease of access.</p>
-      </div>
-    </div>
+
     <div class="project-card">
-      <img src="ViscometerCAD.png" width="507" height="666" loading="lazy" decoding="async" alt="Homemade Viscometer" class="project-img" />
+      <img src="ViscometerCAD.png" width="507" height="666" loading="lazy" decoding="async" alt="CAD model of the custom viscometer assembly" class="project-img" />
       <div class="project-info">
-        <h3>Homemade Viscometer</h3>
-        <p class="meta">LC-Ring Down Circuits • Stepper Control • CAD</p>
-        <p>- Designed and assembled homemade viscosity measuring device for laboratory setting.</p>
-        <p>- Developed custom LC-ring down embedded circuit for highly accurate metal detection.</p>
-        <p>- Reduce measurement turn around time by roughly one week on average in industry environment</p>
+        <h3>Custom Viscometer</h3>
+        <p class="meta">Embedded Circuits • Stepper Control • CAD</p>
+        <p>- Designed and built a viscosity measuring instrument end to end, covering the mechanical design, the
+          sensing circuit, and the embedded firmware that ties them together.</p>
+        <p>- Developed a custom ring-down detection circuit capable of tracking a metal element precisely enough
+          to derive viscosity from how it moves through a fluid.</p>
+        <p>- Reduced measurement turnaround in a production environment from roughly seven days to under an
+          hour, which allowed process decisions to be made the same day instead of the following week.</p>
       </div>
     </div>
+
+    <div class="project-card">
+      <img src="EMS_Payroll.png" width="780" height="484" loading="lazy" decoding="async" alt="EMS Payroll application: Java form for adding a run, with fields for run number, description, start and end time, date, and four employee dropdowns" class="project-img" />
+      <div class="project-info">
+        <h3>Emergency Medical Services Payroll Rebuild</h3>
+        <p class="meta">Java • Databases • Interface Design</p>
+        <p>- Rebuilt a local emergency medical services department&rsquo;s payroll system from the ground up,
+          replacing legacy software that was no longer supported or practical to maintain.</p>
+        <p>- Rewrote the application in Java so that it will continue to run on current systems, and designed the
+          interface around how the department actually records runs and hours rather than around the old
+          software&rsquo;s structure.</p>
+        <p>- Implemented a database backend to hold personnel, position, and timekeeping records while keeping
+          everyday data entry fast for users who are not technical.</p>
+      </div>
+    </div>
+
     <div class="project-card">
       <img src="MicroWave.jpeg" width="900" height="675" loading="lazy" decoding="async" alt="Microwave on a workbench with a custom 3D-printed accessibility module mounted to its right side, featuring a camera window and a large labeled Press Here To Open button" class="project-img" />
       <div class="project-info">
-        <h3>Developmental Disablilty Accessable Microwave Interface</h3>
-        <p class="meta">Raspberry Pi • Circuit Integration • OpenCV</p>
-        <p>- Custom microwave interface to aid in accessibility for children with developmental disabilities.</p>
-        <p>- Responsible for all circuit design, and programming to allow microcontroller communication with microwave circuit.</p>
-        <p>- Implemented Python computer vision software to read food identification card and signal microwave to cook for specified time.</p>
+        <h3>Accessible Microwave Interface for Children with Developmental Disabilities</h3>
+        <p class="meta">Embedded Systems • Circuit Integration • Computer Vision</p>
+        <p>- Built a custom control interface that allows children with developmental disabilities to operate a
+          standard microwave on their own.</p>
+        <p>- Handled all of the circuit design and programming required for a microcontroller to communicate
+          with the microwave&rsquo;s existing control board.</p>
+        <p>- Added computer vision software that reads a printed food identification card and sets the matching
+          cook time automatically, removing the need to enter numbers on a keypad.</p>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -257,19 +313,44 @@
       <section class="panel" role="tabpanel" id="research" aria-labelledby="tab-research" tabindex="0">
         <div class="grid cols-2">
           <div class="card">
-            <h3>Syndactyly Imaging Optimization</h3>
-            <p class="meta">Advisor: Dr. Hui Shen — February 2024–Present</p>
-            <p>Designed imaging hardware and software to capture synchronized views and photogrammetrically reconstruct a 3D model of a hand, enabling improved surgical planning.</p>
+            <h3>Surgical Planning for Syndactyly</h3>
+            <p class="meta">Advisor: Dr. Hui Shen &mdash; January 2024&ndash;Present</p>
+            <p>
+              Syndactyly is a condition in which a child&rsquo;s fingers are joined by skin and soft tissue, and it
+              is corrected surgically in early childhood. This project builds a complete pipeline that
+              reconstructs a patient&rsquo;s hand in three dimensions from ordinary photographs, identifies the
+              relevant anatomy automatically, and simulates how a proposed surgical flap will behave once it is
+              closed. The aim is to give surgeons a way to evaluate and compare plans beforehand rather than
+              making those judgments in the operating room.
+            </p>
           </div>
           <div class="card">
-            <h3>Publications and Accolades</h3>
+            <h3>Exercise Equipment for Deep Space Missions</h3>
+            <p class="meta">Ohio Space Grant Consortium STEM Scholar &mdash; August 2026&ndash;May 2027</p>
+            <p>
+              Astronauts on long missions lose bone density and muscle mass without regular resistance exercise,
+              but the vehicles being designed for deep-space travel have very little space to give up. This
+              project designs compact, instrumented exercise equipment intended for small crew vehicles, funded
+              through a NASA-affiliated award from the Ohio Space Grant Consortium and the Ohio Department of
+              Higher Education.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Publications and Presentations</h3>
             <ul class="clean">
               <li>
-                <a href="IMECE2025-166019.pdf" target="_blank">
-                  A PHOTOGRAMMETRY-BASED APPROACH FOR PATIENT-SPECIFIC MODELING IN SYNDACTYLY SURGERY: PROTOTYPING, 3D RECONSTRUCTION, AND FINITE ELEMENT ANALYSIS
-                </a>
-              </li>              
-              <li>Accepted to IMECE 2025 without revisions</li>
+                <a href="IMECE2025-166019.pdf" target="_blank" rel="noopener">A Photogrammetry-Based Approach for
+                Patient-Specific Modeling in Syndactyly Surgery: Prototyping, 3D Reconstruction, and Finite
+                Element Analysis</a><br />
+                <span class="meta">ASME International Mechanical Engineering Congress and Exposition, 2025 &mdash;
+                Memphis, Tennessee. Presented as an undergraduate contributor.</span>
+              </li>
+              <li>
+                Biomechanical Analysis of Multilayered Artificial Nail Systems: A Survey-Informed Finite Element
+                Approach<br />
+                <span class="meta">ASME International Mechanical Engineering Congress and Exposition, 2026 &mdash;
+                Vancouver, British Columbia. Accepted.</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -279,21 +360,36 @@
       <section class="panel" role="tabpanel" id="resume" aria-labelledby="tab-resume" tabindex="0">
         <div class="grid cols-2">
           <div class="card">
-            <h3>Résumé</h3>
-            <p>For a printable PDF, use the button in the header or <a href="resume.pdf" target="_blank" rel="noopener">open it here</a>.</p>
+            <h3>R&eacute;sum&eacute;</h3>
+            <p>For the full printable version, use the button in the header or
+              <a href="resume.pdf" target="_blank" rel="noopener">open it here</a>.</p>
             <ul class="clean">
-              <li><strong>Intern — Howmet Aerospace</strong> · Test engineering, data acquisition, DOE</li>
-              <li><strong>Biomedical Engineering Research — Ohio Northern University</strong> · Photogrammetry, automation</li>
-              <li><strong>Skills</strong> · SolidWorks, Python, Java, Microcontrollers </li>
+              <li><strong>Evans Research Fellow &mdash; Ohio Northern University</strong><br />
+                <span class="meta">Three-dimensional reconstruction, machine learning, and simulation for
+                surgical planning</span></li>
+              <li><strong>Process Innovation Engineering Intern &mdash; Howmet Aerospace</strong><br />
+                <span class="meta">Custom instrumentation, embedded systems, and integration of new methods into
+                production</span></li>
+              <li><strong>Product Integrity Engineering Intern &mdash; Howmet Aerospace</strong><br />
+                <span class="meta">Test automation, analytics dashboards, and a custom robotic testing
+                rig</span></li>
+              <li><strong>Skills</strong><br />
+                <span class="meta">Python, Java, C++, MATLAB, R &bull; PyTorch, COLMAP, PyVista &bull; ANSYS,
+                pyMAPDL, SolidWorks &bull; Arduino, Raspberry Pi, programmable logic controllers</span></li>
             </ul>
           </div>
           <div class="card">
             <h3>Selected Achievements</h3>
             <ul class="clean">
-              <li>Foundations of Design 2 project showcase champion</li>
-              <li>Four time deans list recipiant</li>
-              <li>Presidential scholarship awardee</li>
-              <li>Freshman Class Honors</li>
+              <li>Ohio Space Grant Consortium STEM Scholarship, 2026&ndash;2027 &mdash; a NASA-affiliated
+                statewide award</li>
+              <li>Evans Research Fellowship, 2026 &mdash; competitive funded summer research fellowship</li>
+              <li>Tau Beta Pi Engineering Honor Society</li>
+              <li>Best Presentation, ONU College of Engineering Research Colloquium</li>
+              <li>Presidential Scholarship</li>
+              <li>Freshman Class Honors &mdash; tied for the highest GPA in the freshman engineering class</li>
+              <li>Foundations of Design II Showcase Champion</li>
+              <li>Dean&rsquo;s List, all eligible semesters</li>
             </ul>
           </div>
         </div>
@@ -311,8 +407,10 @@
           <div class="card">
             <h3>Quick Pitch</h3>
             <p>
-              I love hard problems at the intersection of hardware and software. If you’re hiring for robotics, controls,
-              or test engineering, I’d love to chat.
+              I like hard problems where hardware and software have to work together, and I care most about the
+              ones where the result ends up doing something for a person on the other end. I&rsquo;m graduating in
+              May 2027 and looking for full-time work. If you build in robotics, medical devices, or
+              three-dimensional perception, I&rsquo;d be glad to talk.
             </p>
           </div>
         </div>
