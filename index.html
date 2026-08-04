@@ -58,9 +58,10 @@
       flex-direction: column;
       align-items: stretch;
     }
-    .project-img {
+    .project-card img {
+      max-width: 100%;
       width: 100%;
-      height: 160px;
+      max-height: 220px;
     }
   }
     
@@ -148,8 +149,8 @@
   <div class="wrap">
     <header>
       <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <img src="headShot.jpg" alt="Carter Mitchell Betts profile photo" class="profile-pic" />
+        <div class="logo">
+          <img src="headShot.jpg" width="400" height="400" decoding="async" alt="Carter Mitchell Betts profile photo" class="profile-pic" />
         </div>        
         <div class="name">
           <h1>Carter Mitchell Betts</h1>
@@ -200,7 +201,7 @@
 <section class="panel" role="tabpanel" id="projects" aria-labelledby="tab-projects" tabindex="0">
   <div class="project-list">
     <div class="project-card">
-      <img src="ResearchHardware.png" alt="" class="project-img" />
+      <img src="ResearchHardware.png" width="322" height="188" loading="lazy" decoding="async" alt="Annotated CAD render of the 3D scanner rig: frame, NEMA 23 stepper motor driving double helical gears, central shaft, palm support, and support arms holding the cameras" class="project-img" />
       <div class="project-info">
         <h3>Cost Effective 3D Scanner</h3>
         <p class="meta">Embedded Programming • Microcontrollers • Python</p>
@@ -210,7 +211,7 @@
       </div>
     </div>
      <div class="project-card">
-      <img src="APDL.jpeg" alt="" class="project-img" />
+      <img src="FEA_Flap.png" width="900" height="700" loading="lazy" decoding="async" alt="pyMAPDL nodal equivalent stress contour on a syndactyly flap geometry, showing stress concentrations at the two flap tips" class="project-img" />
       <div class="project-info">
         <h3>Automated Finite Element Analysis (FEA) </h3>
         <p class="meta">Ansys Parametric Design Language • Python • OpenCV</p>
@@ -220,7 +221,7 @@
       </div>
     </div>
      <div class="project-card">
-      <img src="Screenshot 2025-09-22 224854.png" alt="" class="project-img" />
+      <img src="EMS_Payroll.png" width="780" height="484" loading="lazy" decoding="async" alt="EMS Payroll application: Java Swing form for adding a run, with fields for run number, description, start and end time, date, and four employee dropdowns" class="project-img" />
       <div class="project-info">
         <h3>Emergency Medical Services (EMS) Payroll Rebuild</h3>
         <p class="meta">Java • UI/UX Design • SQLite</p>
@@ -230,7 +231,7 @@
       </div>
     </div>
     <div class="project-card">
-      <img src="ViscometerCAD.png" alt="Homemade Viscometer" class="project-img" />
+      <img src="ViscometerCAD.png" width="507" height="666" loading="lazy" decoding="async" alt="Homemade Viscometer" class="project-img" />
       <div class="project-info">
         <h3>Homemade Viscometer</h3>
         <p class="meta">LC-Ring Down Circuits • Stepper Control • CAD</p>
@@ -240,7 +241,7 @@
       </div>
     </div>
     <div class="project-card">
-      <img src="MicroWave.jpeg" alt="" class="project-img" />
+      <img src="MicroWave.jpeg" width="900" height="675" loading="lazy" decoding="async" alt="Microwave on a workbench with a custom 3D-printed accessibility module mounted to its right side, featuring a camera window and a large labeled Press Here To Open button" class="project-img" />
       <div class="project-info">
         <h3>Developmental Disablilty Accessable Microwave Interface</h3>
         <p class="meta">Raspberry Pi • Circuit Integration • OpenCV</p>
@@ -249,7 +250,6 @@
         <p>- Implemented Python computer vision software to read food identification card and signal microwave to cook for specified time.</p>
       </div>
     </div>
-  </div>
   </div>
 </section>
 
@@ -265,7 +265,7 @@
             <h3>Publications and Accolades</h3>
             <ul class="clean">
               <li>
-                <a href="IMECE2025-166019 Final.pdf" target="_blank">
+                <a href="IMECE2025-166019.pdf" target="_blank">
                   A PHOTOGRAMMETRY-BASED APPROACH FOR PATIENT-SPECIFIC MODELING IN SYNDACTYLY SURGERY: PROTOTYPING, 3D RECONSTRUCTION, AND FINITE ELEMENT ANALYSIS
                 </a>
               </li>              
@@ -306,7 +306,7 @@
             <h3>Get in touch</h3>
             <p>Email: <a href="mailto:cartermbetts@gmail.com">cartermbetts@gmail.com</a></p>
             <p>LinkedIn: <a href="https://linkedin.com/in/carter-betts" target="_blank" rel="noopener">linkedin.com/in/carter-betts</a></p>
-            <p>Phone Number: <a target="_blank" rel="noopener">(330)-421-3080</a></p>
+            <p>Phone: <a href="tel:+13304213080">(330) 421-3080</a></p>
           </div>
           <div class="card">
             <h3>Quick Pitch</h3>
@@ -328,11 +328,11 @@
     // Accessible Tabs with hash routing & keyboard support
     const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
     const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
-    function activate(id, pushHash = true){
+    function activate(id, pushHash = true, moveFocus = true){
       tabs.forEach(t=>{
         const sel = t.getAttribute('aria-controls')===id;
         t.setAttribute('aria-selected', sel);
-        if(sel) t.focus({preventScroll:true});
+        if(sel && moveFocus) t.focus({preventScroll:true});
       });
       panels.forEach(p=>p.classList.toggle('active', p.id===id));
       if(pushHash) history.replaceState(null, '', `#${id}`);
@@ -351,7 +351,7 @@
     });
     // Load from hash
     const initial = location.hash?.replace('#','');
-    if(initial && panels.some(p=>p.id===initial)) activate(initial, false);
+    if(initial && panels.some(p=>p.id===initial)) activate(initial, false, false);
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
